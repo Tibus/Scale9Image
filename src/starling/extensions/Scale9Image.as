@@ -25,19 +25,19 @@ package starling.extensions
 		private var _height:Number;
 		private var _width:Number;
 		
-		private var _scaleIfLower:Boolean = true;
+		private var _scaleIfSmaller:Boolean = true;
 		
 		
-		public function get scaleIfLower():Boolean
+		public function get scaleIfSmaller():Boolean
 		{
-			return _scaleIfLower;
+			return _scaleIfSmaller;
 		}
 
-		public function set scaleIfLower(value:Boolean):void
+		public function set scaleIfSmaller(value:Boolean):void
 		{
-			if(_scaleIfLower == value) return;
+			if(_scaleIfSmaller == value) return;
 			
-			_scaleIfLower = value;
+			_scaleIfSmaller = value;
 		}
 
 		override public function get height():Number
@@ -121,7 +121,7 @@ package starling.extensions
 				_tc.visible = false;
 				_bc.visible = false;
 				
-				if(!_scaleIfLower)
+				if(!_scaleIfSmaller)
 				{
 					var lw:Number = _grid.x;
 					
@@ -189,7 +189,7 @@ package starling.extensions
 				_cl.visible = false;
 				_cr.visible = false;
 				
-				if(!_scaleIfLower)
+				if(!_scaleIfSmaller)
 				{
 					var tw:Number = _grid.y;
 

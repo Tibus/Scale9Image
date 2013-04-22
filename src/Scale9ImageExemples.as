@@ -6,6 +6,7 @@ package
 	import starling.utils.HAlign;
 	import starling.utils.VAlign;
 	
+	[SWF(frameRate="60")]
 	public class Scale9ImageExemples extends Sprite
 	{
 		private var _starling:Starling;

@@ -34,12 +34,12 @@
         <h3>Exemples : </h3>
 
         <h4>Base texture : </h4>
-        <img src="swf/UV.jpg"></img>
+        <img src="swf/UV.jpg" style="width:100px; height:100px"/>
 
         <h4>Getting started : </h4>
         <p>Create your Scale9Image with a texture and the rectangle of your 9grid and... it's done... 60fps and only 1 draw calls</p>
         <pre><code>
-var text:Texture = Texture.fromBitmap(new bitmap(), false, false, 1);
+var text:Texture = Texture.fromBitmap(new bitmap());
 image = new Scale9Image(text, new Rectangle(25,25,35,35));
 addChild(image);
 Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent):void
@@ -49,8 +49,35 @@ Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:
 });
         </code></pre>
 
-        <object type="application/x-shockwave-flash" data="./swf/scaleIfLower_true.swf" width="500px" height="375px" id="textureAtlas">
+        <object type="application/x-shockwave-flash" data="./swf/scaleIfLower_true.swf" width="500px" height="375px" id="scaleIfLower_true">
             <param name="movie" value="./swf/textureAtlas.swf" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#f2f2f2" />
+            <param name="wmode" value="direct" />
+        </object>
+
+        <h4>Multime Images : </h4>
+        <p>you can create multiple Scale9Image from a texture without adding new drawCalls</p>
+        <pre><code>var text:Texture = Texture.fromBitmap(new bitmap());
+var text2:Texture = Texture.fromTexture(text, new Rectangle(10,10,80,80), null);
+
+image = new Scale9Image(text2, new Rectangle(15,15,35,35));
+addChild(image);
+
+image2 = new Scale9Image(text2, new Rectangle(15,15,35,35));
+image2.x = 100;
+addChild(image2);
+
+Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent):void
+{
+  image.width = e.stageX;
+  image.height = e.stageY;
+  image2.width = e.stageX;
+  image2.height = e.stageY;
+});</code></pre>
+
+        <object type="application/x-shockwave-flash" data="./swf/multipleImage.swf" width="500px" height="375px" id="multipleImage">
+            <param name="movie" value="./swf/multipleImage.swf" />
             <param name="quality" value="high" />
             <param name="bgcolor" value="#f2f2f2" />
             <param name="wmode" value="direct" />
@@ -58,11 +85,10 @@ Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:
 
         <h4>Texture Atlas : </h4>
         <p>you can create a Scale9Image from a part of a texture without adding new drawCalls</p>
-        <pre><code>var text:Texture = Texture.fromBitmap(new bitmap(), false, false, 1);
+        <pre><code>var text:Texture = Texture.fromBitmap(new bitmap());
 var text2:Texture = Texture.fromTexture(text, new Rectangle(10,10,80,80), null);
 
 image = new Scale9Image(text2, new Rectangle(15,15,35,35));
-image.scaleIfLower = true;
 addChild(image);
 Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent):void
 {
@@ -73,7 +99,46 @@ Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:
         <object type="application/x-shockwave-flash" data="./swf/textureAtlas.swf" width="500px" height="375px" id="textureAtlas">
             <param name="movie" value="./swf/textureAtlas.swf" />
             <param name="quality" value="high" />
-            <param name="bgcolor" value="#ffffff" />
+            <param name="bgcolor" value="#f2f2f2" />
+            <param name="wmode" value="direct" />
+        </object>
+
+        <h4>Avoid scaling if smaller than texture size : </h4>
+        <pre><code>var text:Texture = Texture.fromBitmap(new bitmap());
+
+image = new Scale9Image(text, new Rectangle(15,15,35,35));
+image.scaleIfSmaller = false;
+addChild(image);
+Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent):void
+{
+  image.width = e.stageX;
+  image.height = e.stageY;
+});</code></pre>
+
+        <object type="application/x-shockwave-flash" data="./swf/scaleIfLower_false.swf" width="500px" height="375px" id="scaleIfLower_false">
+            <param name="movie" value="./swf/scaleIfLower_false.swf" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#f2f2f2" />
+            <param name="wmode" value="direct" />
+        </object>
+
+        <h4>Scale image : </h4>
+        <p>you can scale your image if you want to</p>
+        <pre><code>var text:Texture = Texture.fromBitmap(new bitmap());
+
+image = new Scale9Image(text, new Rectangle(15,15,35,35));
+image.scaleX = image.scaleY = 2;
+addChild(image);
+Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent):void
+{
+  image.width = e.stageX;
+  image.height = e.stageY;
+});</code></pre>
+
+        <object type="application/x-shockwave-flash" data="./swf/scale2.swf" width="500px" height="375px" id="scale2">
+            <param name="movie" value="./swf/scale2.swf" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#f2f2f2" />
             <param name="wmode" value="direct" />
         </object>
 
@@ -87,8 +152,5 @@ Starling.current.nativeStage.addEventListener(MouseEvent.MOUSE_MOVE, function(e:
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-    
-
   </body>
 </html>
